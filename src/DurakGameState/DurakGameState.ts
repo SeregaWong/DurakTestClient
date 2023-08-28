@@ -1,8 +1,10 @@
-import { DurakGame, DurakPlayerApi } from "sw-durak-game-api";
+import { AdvancedDurakGameApi, DurakPlayerApi } from "sw-durak-game-api";
 
 export class DurakGameState {
 
-  private game!: DurakGame;
+  private game!: AdvancedDurakGameApi;
+
+  public controlls!: Pick<AdvancedDurakGameApi, 'toNextState' | 'toPreviousState'>;
 
   constructor(
     private players: [player1: DurakPlayerApi, player2: DurakPlayerApi],
@@ -13,7 +15,7 @@ export class DurakGameState {
   restart() {
     const [player1, player2] = this.players;
 
-    this.game = new DurakGame(player1, player2, (winner) => {
+    this.controlls = this.game = new AdvancedDurakGameApi(player1, player2, (winner) => {
         if (!winner) {
           alert('no winner');
         } else if (winner === player1) {

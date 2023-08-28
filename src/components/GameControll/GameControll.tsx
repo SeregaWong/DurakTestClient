@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { DurakGame, DeepReadonly, DurakPlayerApi } from "sw-durak-game-api";
+import { DurakGameApi, DeepReadonly, DurakPlayerApi } from "sw-durak-game-api";
 import { BackSideCard, BackSideCardSymbol } from "../Card/BackSideCard";
 import { CardsDeck } from "../Card/CardsDeck";
 import { CardsList } from "../Card/CardsList";
 import { ControllTable } from "./ControllTable";
-import { GamePlayer } from "./GamePlayer";
 
-export function GameControll({ playerState, update }: { playerState: DeepReadonly<DurakGame.PersonalGameState>; update: DurakPlayerApi['update'] }) {
+export function GameControll({ playerState, update }: { playerState: DeepReadonly<DurakGameApi.IState.Personal>; update: DurakPlayerApi['update'] }) {
 
   const [selected, setSelected] = useState<number>();
 

@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { DurakGame, DeepReadonly } from "sw-durak-game-api";
+import { DurakGameApi, DeepReadonly } from "sw-durak-game-api";
 import { DurakGameState } from "../DurakGameState/DurakGameState";
 import { GameControll } from "./GameControll/GameControll";
 import { GamePlayer } from "./GameControll/GamePlayer";
 
 
 export function TestGame() {
-  const [player1State, setPlayer1State] = useState<DeepReadonly<DurakGame.PersonalGameState>>();
+  const [player1State, setPlayer1State] = useState<DeepReadonly<DurakGameApi.IState.Personal>>();
 
   const [player1] = useState(() => new GamePlayer((state) => {
     setPlayer1State(state);
   }));
 
-  const [player2State, setPlayer2State] = useState<DeepReadonly<DurakGame.PersonalGameState>>();
+  const [player2State, setPlayer2State] = useState<DeepReadonly<DurakGameApi.IState.Personal>>();
 
   const [player2] = useState(() => new GamePlayer((state) => {
     setPlayer2State(state);
@@ -29,5 +29,21 @@ export function TestGame() {
         gameState.restart();
       }}
     >restart</button>
+    <button
+      className="restart-btn"
+      onClick={() => {
+        try {
+          gameState.controlls.toPreviousState();
+        } catch (err) {
+          console.log(err);
+        }
+      }}
+    >{'<--'}</button>
+    <button
+      className="restart-btn"
+      onClick={() => {
+        gameState.controlls.toNextState();
+      }}
+    >{'-->'}</button>
   </div>);
 }

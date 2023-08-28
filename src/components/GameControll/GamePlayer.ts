@@ -1,19 +1,19 @@
-import { DeepReadonly, DurakGame, DurakPlayerApi } from "sw-durak-game-api";
+import { DeepReadonly, DurakGameApi, DurakPlayerApi } from "sw-durak-game-api";
 
 
 export class GamePlayer extends DurakPlayerApi {
 
   constructor(
-    private _onUpdate: (state: DeepReadonly<DurakGame.PersonalGameState>) => void
+    private _onUpdate: (state: DeepReadonly<DurakGameApi.IState.Personal>) => void
   ) {
     super();
   }
 
-  onUpdate(state: DeepReadonly<DurakGame.PersonalGameState>): void {
+  onUpdate(state: DeepReadonly<DurakGameApi.IState.Personal>): void {
     this._onUpdate(state);
   }
 
-  update(action: DurakGame.Action): void {
+  update(action: DurakGameApi.Action): void {
     super.update(action);
   }
 }

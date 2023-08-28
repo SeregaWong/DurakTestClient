@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { DurakGame, DeepReadonly } from "sw-durak-game-api";
+import { DurakGameApi, DeepReadonly } from "sw-durak-game-api";
 import { CardComponent } from "../Card/Card";
 
-type Props = DeepReadonly<Pick<DurakGame.PersonalGameState, 'isAttack' | 'table'> & {
+type Props = DeepReadonly<Pick<DurakGameApi.IState.Personal, 'isAttack' | 'table'> & {
   setSelected(selected?: number): void;
   selected?: number;
 }>;
